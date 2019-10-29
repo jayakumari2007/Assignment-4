@@ -15,7 +15,7 @@ Log_Prior=@(theta) log(theta);
 Posterior=@(theta) (Log_Prior(theta)+Bernoulli_LogLikelihood_PDF(theta,N,z));
 
 Initial=0.5;
-Nsamples=10000;
+Nsamples=1000;
 jump=0.01;
 
 [theta_samples] = slicesample (Initial,Nsamples,'logpdf',Posterior,'width',jump);
@@ -55,7 +55,7 @@ Log_Prior1=@(theta) log(theta);
 Posterior1=@(theta) (Log_Prior1(theta)+Bernoulli_LogLikelihood_PDF1(theta,N1,z1));
 
 Initial1=0.5;
-Nsamples1=100000;
+Nsamples1=1000;
 jump1=0.01;
 
 [theta_samples1] = slicesample (Initial1,Nsamples1,'logpdf',Posterior1,'width',jump1);
@@ -82,7 +82,10 @@ end
 mbe_hdi(dTheta,0.95)
 %result 0.0327    0.6992
 
-hist(dTheta,100);
+hist(dTheta,100); 
+hold on; 
+line(HDI,[0,0],'Color','r','LineWidth',5);
+legend('dTheta','HDI');
 
 
 %%
