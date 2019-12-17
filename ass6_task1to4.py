@@ -179,7 +179,7 @@ kids_fraction = sum(child_j)/len(child_j)
 for i,sample_i in enumerate(indices): 
     #knowing that it is a child
     theta_kid = np.random.randn(1)[0]*tau[sample_i] + mu[sample_i] + phi[sample_i]
-    y_kids[i]=np.exp(np.random.randn(1)[0]*sigma[i] + theta_kid )
+    y_kids[i]=np.exp(np.random.randn(1)[0]*sigma[sample_i] + theta_kid )
     
     theta_adult = np.random.randn(1)[0]*tau[sample_i] + mu[sample_i] 
     y_adults[i]=np.exp(np.random.randn(1)[0]*sigma[sample_i] + theta_adult )
@@ -187,7 +187,7 @@ for i,sample_i in enumerate(indices):
     #not knowing if it is a kid
     if np.random.rand()< kids_fraction:
        theta_mixed = np.random.randn(1)[0]*tau[sample_i] + mu[sample_i] + phi[sample_i]
-       y_mixed[i]=np.exp(np.random.randn(1)[0]*sigma[i] + theta_mixed ) 
+       y_mixed[i]=np.exp(np.random.randn(1)[0]*sigma[sample_i] + theta_mixed ) 
     else:
        theta_mixed = np.random.randn(1)[0]*tau[sample_i] + mu[sample_i] 
        y_mixed[i]=np.exp(np.random.randn(1)[0]*sigma[sample_i] + theta_mixed ) 
